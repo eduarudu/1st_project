@@ -3,8 +3,8 @@ from datetime import timedelta
 import random
 all_receipts = []
 
+
 class Receipt():
-    global all_receipts
     count_receipts = 100
 
     def __init__(self):
@@ -55,32 +55,3 @@ class TV(Receipt):
         self.breakdown = breakdown
         Receipt.count_receipts += 1
         all_receipts.append(TV)
-
-
-p1 = Phone("LG", 'android', 'сломан экран')
-p1.name = 'Щуревич Виктория Геннадьевна'
-
-p2 = Phone("Lenovo", 'android', 'сломано гнездо для зарядки')
-p2.name = 'Мурашко Юлия Сергеевна'
-
-p3 = Phone("Xiaomi", 'android', 'не работает камера')
-p3.name = 'Рачинский Павел Игоревич'
-
-n1 = Notebook('Aser', 'Windows', '1994', 'ремонт кулера в ноутбуке')
-n1.name = 'Аттас Елена-Мария Андреевна'
-
-n2 = Notebook('Lenovo', 'Windows', '2015', 'ремонт материнской платы')
-n2.name = 'Былино Константин Сергеевич'
-
-n3 = Notebook('Apple', 'Mac OS', '2020', 'замена северного моста')
-n3.name = 'name'
-
-telev1 = TV('LG', '33', 'линия битых пикселей на матрице')
-telev1.name = 'Аттас Елена-Мария Андреевна'
-
-telev2 = TV('Sony', '33', 'нет звука')
-telev2.name = 'Картуль Виолетта Викторовна'
-
-telev3 = TV('Panasonic', '33', 'не включается')
-telev3.name = 'Микуло Александр Сергеевич'
-
