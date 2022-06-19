@@ -29,16 +29,24 @@ t3 = TV('Микуло Александр Сергеевич', 'Panasonic', '33',
 t3.status = "repaired"
 
 
-
-a = input("a=")
-if a == "0":
+def show_receipts():
+    a = input("Введите номер квитанции или ФИО: ")
     for i in all_receipts:
-        print(i)
-else:
-    pass
+        for key, value in i.items():
+            for p in i.values():
+                if p == a:
+                    print(key, ":", value)
+
+# a = input("a=")
+# if a == "0":
+#     for i in all_receipts:
+#         print(i)
+# else:
+#     pass
 
 while True:
-    options = input("Напишите '1', если вы хотите сдать технику в ремонт или '2', если вы хотите просмотреть информацию: ")
+    options = input("Напишите:\n'1', если вы хотите сдать технику в ремонт\n'2', если вы хотите просмотреть информацию\n"
+                    "'3', чтобы зайти в администраторскую панель\n---------------------------------------------\n")
     if options == "1":
 
 
@@ -75,12 +83,10 @@ while True:
 
 
     elif options == "2":
-        a = input("Введите номер квитанции или ФИО: ")
-        for i in all_receipts:
-            for key, value in i.items():
-                for p in i.values():
-                    if p == a:
-                        print(key, ":", value)
+
+        show_receipts()
+        print(" ")
+
 
     # elif options == "2":
     #     a = input("Введите номер квитанции или ФИО: ")
@@ -92,6 +98,40 @@ while True:
     #                     if p == n:
     #                         print(key, ":", value)
 
+
+    elif options == "3":
+        # login = input()
+        # password = input()
+
+        action = input("Выберите действие:\n'1' - Действия с админами\n'2' - Действия с квитанциями"
+                       "\n---------------------------------------------\n")
+
+        if action == "1":
+            action_1 = input("Следующее действие:\n'1' - отобразить список всех админов\n'2' - удалить админа из списка"
+                             "\n'3' - добавить нового админа\n---------------------------------------------\n")
+
+            if action_1 == "1":
+                pass
+
+            if action_1 == "2":
+                pass
+
+            if action_1 == "3":
+                pass
+
+        if action == "2":
+            action_2 = input("Следующее действие:\n'1' - изменить статус ремонта\n'2' - изменить дату выполнения ремонта"
+                             "\n'3' - посмотреть информацию о квитанции\n---------------------------------------------\n")
+
+            if action_2 == "1":
+                pass
+
+            if action_2 == "2":
+                pass
+
+            if action_2 == "3":
+                show_receipts()
+                print(" ")
 
 
 
