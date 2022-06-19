@@ -1,35 +1,41 @@
 from receiptsbase import Phone, Notebook, TV
 from receiptsbase import all_receipts
 
-p1 = Phone("LG", 'android', 'сломан экран')
-p1.name = 'Щуревич Виктория Геннадьевна'
+p1 = Phone('Щуревич Виктория Геннадьевна', "LG", 'android', 'сломан экран')
+p1.status = "repaired"
 
-p2 = Phone("Lenovo", 'android', 'сломано гнездо для зарядки')
-p2.name = 'Мурашко Юлия Сергеевна'
+p2 = Phone('Мурашко Юлия Сергеевна', "Lenovo", 'android', 'сломано гнездо для зарядки')
+p2.status = "issued"
 
-p3 = Phone("Xiaomi", 'android', 'не работает камера')
-p3.name = 'Рачинский Павел Игоревич'
+p3 = Phone('Рачинский Павел Игоревич', "Xiaomi", 'android', 'не работает камера')
+p3.status = "ready"
 
-n1 = Notebook('Aser', 'Windows', '1994', 'ремонт кулера в ноутбуке')
-n1.name = 'Аттас Елена-Мария Андреевна'
+n1 = Notebook('Аттас Елена-Мария Андреевна', 'Aser', 'Windows', '1994', 'ремонт кулера в ноутбуке')
+n1.status = "issued"
 
-n2 = Notebook('Lenovo', 'Windows', '2015', 'ремонт материнской платы')
-n2.name = 'Былино Константин Сергеевич'
+n2 = Notebook('Былино Константин Сергеевич', 'Lenovo', 'Windows', '2015', 'ремонт материнской платы')
+n2.status = "ready"
 
-n3 = Notebook('Apple', 'Mac OS', '2020', 'замена северного моста')
-n3.name = 'name'
+n3 = Notebook('Картуль Виолетта Викторовна', 'Apple', 'Mac OS', '2020', 'замена северного моста')
+n3.status = "repaired"
 
-t1 = TV('LG', '33', 'линия битых пикселей на матрице')
-t1.name = 'Аттас Елена-Мария Андреевна'
+t1 = TV('Аттас Елена-Мария Андреевна', 'LG', '33', 'линия битых пикселей на матрице')
+t1.status = "issued"
 
-t2 = TV('Sony', '33', 'нет звука')
-t2.name = 'Картуль Виолетта Викторовна'
+t2 = TV('Картуль Виолетта Викторовна', 'Sony', '33', 'нет звука')
+t2.status = "ready"
 
-t3 = TV('Panasonic', '33', 'не включается')
-t3.name = 'Микуло Александр Сергеевич'
+t3 = TV('Микуло Александр Сергеевич', 'Panasonic', '33', 'не включается')
+t3.status = "repaired"
 
-for i in all_receipts:
-    print(i)
+
+
+a = input("a=")
+if a == "0":
+    for i in all_receipts:
+        print(i)
+else:
+    pass
 
 while True:
     options = input("Напишите '1', если вы хотите сдать технику в ремонт или '2', если вы хотите просмотреть информацию: ")
@@ -41,8 +47,7 @@ while True:
 
 
         if a == "1":
-            phone1 = Phone(input("Введите марку телефона: "), input("Укажите операционную систему: "), input('Опишите поломку: '))
-            phone1.name = name
+            phone1 = Phone(name, input("Введите марку телефона: "), input("Укажите операционную систему: "), input('Опишите поломку: '))
             print(f'номер квитанции: {phone1.receipt_number}', f'тип изделия: {phone1.technique_type}', f'дата приемки: '
                   f'{phone1.accepted}', f'дата выполнения ремонта: {phone1.issued}', f'ФИО заказчика: {phone1.name}',
                   phone1.stat(), f'статус: {phone1.status} ', sep="\n")
@@ -50,9 +55,8 @@ while True:
 
 
         if a == "2":
-            note1 = Notebook(input("Введите марку ноутбука: "), input("Укажите операционную систему: "),
+            note1 = Notebook(name, input("Введите марку ноутбука: "), input("Укажите операционную систему: "),
                              input('Укажите год выпуска: '), input('Опишите поломку: '))
-            note1.name = name
             print(f'номер квитанции: {note1.receipt_number}', f'тип изделия: {note1.technique_type}', f'дата приемки: '
                   f'{note1.accepted}', f'дата выполнения ремонта: {note1.issued}', f'ФИО заказчика: {note1.name}',
                   note1.stat(), f'статус: {note1.status} ', sep="\n")
@@ -60,8 +64,7 @@ while True:
 
 
         if a == "3":
-            tv1 = TV(input("Введите марку телевизора: "), input("Укажите диагональ экрана: "), input('Опишите поломку: '))
-            tv1.name = name
+            tv1 = TV(name, input("Введите марку телевизора: "), input("Укажите диагональ экрана: "), input('Опишите поломку: '))
             print(f'номер квитанции: {tv1.receipt_number}', f'тип изделия: {tv1.technique_type}', f'дата приемки: '
                   f'{tv1.accepted}', f'дата выполнения ремонта: {tv1.issued}', f'ФИО заказчика: {tv1.name}',
                   tv1.stat(), f'статус: {tv1.status} ', sep="\n")
@@ -70,15 +73,28 @@ while True:
         else:
             pass
 
-        a = input("a=")
-        if a == "1":
-            print(all_receipts)
-        else:
-            pass
-
 
     elif options == "2":
-        pass
+        a = input("Введите номер квитанции или ФИО: ")
+        for i in all_receipts:
+            for key, value in i.items():
+                for p in i.values():
+                    if p == a:
+                        print(key, ":", value)
+
+    # elif options == "2":
+    #     a = input("Введите номер квитанции или ФИО: ")
+    #     for i in all_receipts:
+    #         for key, value in i.items():
+    #             for p in i.values():
+    #                 if p == a:
+    #                     n = i["ФИО заказчика"]
+    #                     if p == n:
+    #                         print(key, ":", value)
+
+
+
+
 
 
 
